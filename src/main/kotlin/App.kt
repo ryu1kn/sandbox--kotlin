@@ -13,6 +13,8 @@ fun main() {
 
 class App {
     private val builder = StringBuilder()
+    private val print = { s: String -> builder.append(s) }
+
     private val waitTime = 25L
 
     fun run() {
@@ -20,12 +22,12 @@ class App {
             launch {
                 launch {
                     delay(waitTime)
-                    builder.append("!")
+                    print("!")
                 }
                 delay(waitTime)
-                builder.append("World")
+                print("World")
             }
-            builder.append("Hello ")
+            print("Hello ")
         }
     }
 
