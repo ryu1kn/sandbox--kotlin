@@ -1,5 +1,6 @@
 package io.ryuichi
 
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -20,12 +21,12 @@ class App {
     fun run() {
         runBlocking<Unit> {
             launch {
-                launch {
+                coroutineScope {
                     delay(waitTime)
-                    print("!")
+                    print("World")
                 }
                 delay(waitTime)
-                print("World")
+                print("!")
             }
             print("Hello ")
         }
