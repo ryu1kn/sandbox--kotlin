@@ -14,16 +14,12 @@ fun main() {
 class App {
     private val builder = StringBuilder()
 
-    fun run() = runBlocking {
+    fun run() = runBlocking<Unit> {
         launch {
-            builder.append(getWhoToGreet())
+            delay(50L)
+            builder.append("World!")
         }
         builder.append("Hello ")
-    }
-
-    private suspend fun getWhoToGreet(): String {
-        delay(50L)
-        return "World!"
     }
 
     fun getResult() = builder.toString()
