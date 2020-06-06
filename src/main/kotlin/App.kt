@@ -1,6 +1,5 @@
 package io.ryuichi
 
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -16,11 +15,10 @@ class App {
     private val builder = StringBuilder()
 
     fun run() = runBlocking {
-        val job = GlobalScope.launch {
+        launch {
             builder.append(getWhoToGreet())
         }
         builder.append("Hello ")
-        job.join()
     }
 
     private suspend fun getWhoToGreet(): String {
