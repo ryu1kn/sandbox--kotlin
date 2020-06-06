@@ -21,6 +21,10 @@ class App {
     fun run() {
         runBlocking<Unit> {
             launch {
+                launch {
+                    delay(waitTime)
+                    print("Beautiful ")
+                }
                 coroutineScope {
                     delay(waitTime * 2)
                     print("World")
@@ -32,5 +36,5 @@ class App {
         }
     }
 
-    fun getResult() = builder.toString()
+    fun getResult() = builder.toString().trimStart()
 }

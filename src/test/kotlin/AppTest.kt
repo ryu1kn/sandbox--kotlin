@@ -9,7 +9,7 @@ class AppTest {
     fun `find who to greet`() {
         App().apply {
             run()
-            getResult() equalsTo "Hello World!"
+            getResult() equalsTo "Hello Beautiful World!"
         }
     }
 }
