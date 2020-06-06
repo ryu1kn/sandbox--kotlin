@@ -6,10 +6,10 @@ class AppTest {
     private infix fun <T> T.equalsTo(expected: T) = assertEquals(expected, this)
 
     @Test
-    fun `find who to greet`() {
+    fun `App using coroutine`() {
         App().apply {
             run()
-            getResult() equalsTo "Hello Beautiful World!"
+            getResult() equalsTo "Hello Beautiful World !"
         }
     }
 }

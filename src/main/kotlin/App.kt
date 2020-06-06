@@ -13,8 +13,8 @@ fun main() {
 }
 
 class App {
-    private val builder = StringBuilder()
-    private val print = { s: String -> builder.append(s) }
+    private val printed = mutableListOf<String>()
+    private val print = { s: String -> printed.add(s) }
 
     private val waitTime = 5L
 
@@ -23,7 +23,7 @@ class App {
             launch {
                 launch {
                     delay(waitTime)
-                    print("Beautiful ")
+                    print("Beautiful")
                 }
                 coroutineScope {
                     delay(waitTime * 2)
@@ -32,9 +32,9 @@ class App {
                 delay(waitTime)
                 print("!")
             }
-            print("Hello ")
+            print("Hello")
         }
     }
 
-    fun getResult() = builder.toString().trimStart()
+    fun getResult() = printed.joinToString(" ")
 }
