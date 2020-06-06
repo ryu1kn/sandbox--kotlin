@@ -16,15 +16,15 @@ class JobRunner {
     private val builder = StringBuilder()
 
     suspend fun run() = runBlocking {
-        GlobalScope.launch {
+        val job = GlobalScope.launch {
             builder.append(getWhoToGreet())
         }
         builder.append("Hello ")
-        delay(2000L)
+        job.join()
     }
 
     private suspend fun getWhoToGreet(): String {
-        delay(1000L)
+        delay(50L)
         return "World!"
     }
 
