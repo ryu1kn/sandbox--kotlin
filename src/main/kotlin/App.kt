@@ -13,13 +13,20 @@ fun main() {
 
 class App {
     private val builder = StringBuilder()
+    private val waitTime = 25L
 
-    fun run() = runBlocking<Unit> {
-        launch {
-            delay(50L)
-            builder.append("World!")
+    fun run() {
+        runBlocking<Unit> {
+            launch {
+                launch {
+                    delay(waitTime)
+                    builder.append("!")
+                }
+                delay(waitTime)
+                builder.append("World")
+            }
+            builder.append("Hello ")
         }
-        builder.append("Hello ")
     }
 
     fun getResult() = builder.toString()
