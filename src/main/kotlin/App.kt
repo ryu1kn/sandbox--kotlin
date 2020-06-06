@@ -16,13 +16,13 @@ class App {
     private val builder = StringBuilder()
     private val print = { s: String -> builder.append(s) }
 
-    private val waitTime = 25L
+    private val waitTime = 5L
 
     fun run() {
         runBlocking<Unit> {
             launch {
                 coroutineScope {
-                    delay(waitTime)
+                    delay(waitTime * 2)
                     print("World")
                 }
                 delay(waitTime)
