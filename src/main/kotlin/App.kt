@@ -4,9 +4,13 @@ import kotlinx.coroutines.*
 
 fun main() = runBlocking<Unit> {
     GlobalScope.launch {
-        delay(1000L)
-        println("World!")
+        println(getWhoToGreet())
     }
     println("Hello,")
     delay(2000L)
+}
+
+suspend fun getWhoToGreet(): String {
+    delay(1000L)
+    return "World!"
 }

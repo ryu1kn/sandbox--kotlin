@@ -1,9 +1,11 @@
+import io.ryuichi.getWhoToGreet
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class AppTest {
     @Test
-    fun math() {
-        assertEquals(2, 1 + 1)
+    fun `find who to greet`() = runBlocking {
+        assertEquals(getWhoToGreet(), "World!")
     }
 }
