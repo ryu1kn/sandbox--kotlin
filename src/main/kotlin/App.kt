@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-fun main() = runBlocking<Unit> {
+fun main() {
     JobRunner().apply {
         run()
         println(getResult())
@@ -15,7 +15,7 @@ fun main() = runBlocking<Unit> {
 class JobRunner {
     private val builder = StringBuilder()
 
-    suspend fun run() = runBlocking {
+    fun run() = runBlocking {
         val job = GlobalScope.launch {
             builder.append(getWhoToGreet())
         }
