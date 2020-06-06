@@ -1,4 +1,4 @@
-import io.ryuichi.JobRunner
+import io.ryuichi.App
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -7,7 +7,7 @@ class AppTest {
 
     @Test
     fun `find who to greet`() {
-        JobRunner().apply {
+        App().apply {
             run()
             getResult() equalsTo "Hello World!"
         }

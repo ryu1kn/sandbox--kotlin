@@ -6,13 +6,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() {
-    JobRunner().apply {
+    App().apply {
         run()
         println(getResult())
     }
 }
 
-class JobRunner {
+class App {
     private val builder = StringBuilder()
 
     fun run() = runBlocking {
