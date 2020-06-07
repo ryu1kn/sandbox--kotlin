@@ -84,4 +84,17 @@ class AppTest {
                 |main: Now I can quit.""".trimMargin()
         }
     }
+
+    @Test
+    fun `Automatically cancel coroutine if it times out`() {
+        CaseTimeout().apply {
+            run()
+            getResult() equalsTo """
+                |job: I'm sleeping 0 ...
+                |job: I'm sleeping 1 ...
+                |job: I'm sleeping 2 ...
+                |main: timeout occurred
+                |main: Now I can quit.""".trimMargin()
+        }
+    }
 }
