@@ -6,7 +6,7 @@ plugins {
 group 'io.ryuichi'
 version '1.0-SNAPSHOT'
 
-mainClassName = 'io.ryuichi.AppKt'
+mainClassName = 'io.ryuichi.MainKt'
 
 repositories {
     mavenCentral()

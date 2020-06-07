@@ -2,13 +2,10 @@ package io.ryuichi
 
 import kotlinx.coroutines.*
 
-class LearnBasic {
-    private val printed = mutableListOf<String>()
-    private val print = { s: String -> printed.add(s) }
-
+class LearnBasic : App() {
     private val waitTime = 5L
 
-    fun run() {
+    override fun run() {
         // Block the thread until all the operations inside finishes
         runBlocking<Unit> {
             // Creates a new coroutine scope that lives in the current scope
@@ -34,6 +31,4 @@ class LearnBasic {
         delay(waitTime)
         print("Beautiful")
     }
-
-    fun getResult() = printed.joinToString(" ")
 }
