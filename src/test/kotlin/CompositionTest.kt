@@ -1,4 +1,5 @@
 import helper.AssertionHelper
+import io.ryuichi.composition.CaseAsyncFailurePropagation
 import io.ryuichi.composition.CaseLazyAsynchronous
 import io.ryuichi.composition.CaseParallel
 import io.ryuichi.composition.CaseSequential
@@ -30,6 +31,17 @@ class CompositionTest : AssertionHelper {
             run()
             expect("The answer is 42", { getResult().lines().first() })
             expect("Completed in ", { getResult().lines()[1].takeWhile { ! it.isDigit() } })
+        }
+    }
+
+    @Test
+    fun `Failed coroutine causes other coroutines in the same scope get cancelled`() {
+        CaseAsyncFailurePropagation().apply {
+            run()
+            getResult() equalsTo """
+                Second child throws an exception
+                First child was cancelled
+                Computation failed with ArithmeticException""".trimIndent()
         }
     }
 }
