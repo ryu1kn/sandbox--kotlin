@@ -3,8 +3,6 @@ package io.ryuichi
 import kotlinx.coroutines.*
 
 class LearnBasic : App() {
-    private val waitTime = 5L
-
     override fun run() {
         // Block the thread until all the operations inside finishes
         runBlocking<Unit> {
@@ -16,11 +14,11 @@ class LearnBasic : App() {
 
                 // suspend the execution of following block
                 coroutineScope {
-                    delay(waitTime * 2)
+                    delay(waitTime(2))
                     println("World")
                 }
 
-                delay(waitTime)
+                delay(waitTime())
                 println("!")
             }
             println("Hello")
@@ -28,7 +26,7 @@ class LearnBasic : App() {
     }
 
     private val praise: suspend CoroutineScope.() -> Unit = {
-        delay(waitTime)
+        delay(waitTime())
         println("Beautiful")
     }
 }
