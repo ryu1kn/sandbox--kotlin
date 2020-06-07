@@ -1,5 +1,6 @@
 import io.ryuichi.CaseBasicCoroutine
 import io.ryuichi.cancellation.CaseBasicCancellation
+import io.ryuichi.cancellation.CaseFinallyCancellation
 import io.ryuichi.cancellation.CaseManualCheckCancellation
 import io.ryuichi.cancellation.CaseNotCooperativeCancellation
 import org.junit.jupiter.api.Test
@@ -54,6 +55,20 @@ class AppTest {
                 |job: I'm sleeping 2 ...
                 |job: I'm sleeping 3 ...
                 |main: I'm tired of waiting!
+                |main: Now I can quit.""".trimMargin()
+        }
+    }
+
+    @Test
+    fun `Cancellation is just an exception, use finally to close resources`() {
+        CaseFinallyCancellation().apply {
+            run()
+            getResult() equalsTo """
+                |job: I'm sleeping 0 ...
+                |job: I'm sleeping 1 ...
+                |job: I'm sleeping 2 ...
+                |main: I'm tired of waiting!
+                |job: I'm running finally
                 |main: Now I can quit.""".trimMargin()
         }
     }
