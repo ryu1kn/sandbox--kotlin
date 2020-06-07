@@ -1,7 +1,8 @@
 package io.ryuichi.composition
 
 import io.ryuichi.App
-import kotlinx.coroutines.delay
+import io.ryuichi.composition.SomeUsefulThings.doSomethingUsefulOne
+import io.ryuichi.composition.SomeUsefulThings.doSomethingUsefulTwo
 import kotlinx.coroutines.runBlocking
 import kotlin.system.measureTimeMillis
 
@@ -13,15 +14,5 @@ class CaseSequential : App() {
             println("The answer is ${one + two}")
         }
         println("Completed in $time ms")
-    }
-
-    private suspend fun doSomethingUsefulOne(): Int {
-        delay(waitTime())
-        return 13
-    }
-
-    private suspend fun doSomethingUsefulTwo(): Int {
-        delay(waitTime())
-        return 29
     }
 }
