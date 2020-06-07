@@ -6,7 +6,7 @@ abstract class App {
     protected fun waitTime(factor: Int = 1) = 10L * factor
     protected fun waitTime(factor: Double) = (waitTime().toDouble() * factor).toLong()
 
-    protected val println = { s: String -> printed.add(s) }
+    protected open val println = { s: String -> printed.add(s) }
 
     abstract fun run()
 
