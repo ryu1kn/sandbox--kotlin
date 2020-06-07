@@ -1,10 +1,11 @@
-package io.ryuichi
+package io.ryuichi.cancellation
 
+import io.ryuichi.App
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class LearnCancellation : App() {
+class CaseBasicCancellation : App() {
     override fun run() = runBlocking<Unit> {
         val job = launch {
             repeat(1000) { i ->

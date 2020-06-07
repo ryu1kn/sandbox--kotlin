@@ -2,7 +2,7 @@ package io.ryuichi
 
 import kotlinx.coroutines.*
 
-class LearnBasic : App() {
+class CaseBasicCoroutine : App() {
     override fun run() {
         // Block the thread until all the operations inside finishes
         runBlocking<Unit> {

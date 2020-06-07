@@ -1,7 +1,7 @@
-import io.ryuichi.LearnBasic
-import io.ryuichi.LearnCancellation
-import io.ryuichi.LearnCancellationManualCheck
-import io.ryuichi.LearnCancellationNoCooperative
+import io.ryuichi.CaseBasicCoroutine
+import io.ryuichi.cancellation.CaseBasicCancellation
+import io.ryuichi.cancellation.CaseManualCheckCancellation
+import io.ryuichi.cancellation.CaseNotCooperativeCancellation
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -10,7 +10,7 @@ class AppTest {
 
     @Test
     fun `App using coroutine`() {
-        LearnBasic().apply {
+        CaseBasicCoroutine().apply {
             run()
             getResult() equalsTo "Hello\nBeautiful\nWorld\n!"
         }
@@ -18,7 +18,7 @@ class AppTest {
 
     @Test
     fun `Cancel coroutine`() {
-        LearnCancellation().apply {
+        CaseBasicCancellation().apply {
             run()
             getResult() equalsTo """
                 |job: I'm sleeping 0 ...
@@ -31,7 +31,7 @@ class AppTest {
 
     @Test
     fun `Unable to cancel non-cooperative (no-suspending function call) block`() {
-        LearnCancellationNoCooperative().apply {
+        CaseNotCooperativeCancellation().apply {
             run()
             getResult() equalsTo """
                 |job: I'm sleeping 0 ...
@@ -46,7 +46,7 @@ class AppTest {
 
     @Test
     fun `Turn compuation code cancellable by explicitly checking cancellation status`() {
-        LearnCancellationManualCheck().apply {
+        CaseManualCheckCancellation().apply {
             run()
             getResult() equalsTo """
                 |job: I'm sleeping 0 ...

@@ -1,8 +1,9 @@
-package io.ryuichi
+package io.ryuichi.cancellation
 
+import io.ryuichi.App
 import kotlinx.coroutines.*
 
-class LearnCancellationNoCooperative : App() {
+class CaseNotCooperativeCancellation : App() {
     override fun run() = runBlocking<Unit> {
         val startTime = System.currentTimeMillis()
         val job = launch(Dispatchers.Default) {

@@ -1,11 +1,13 @@
 package io.ryuichi
 
+import io.ryuichi.cancellation.CaseBasicCancellation
+
 fun main() {
-    LearnBasic().apply {
+    CaseBasicCoroutine().apply {
         run()
         println(getResult())
     }
-    LearnCancellation().apply {
+    CaseBasicCancellation().apply {
         run()
         println(getResult())
     }
