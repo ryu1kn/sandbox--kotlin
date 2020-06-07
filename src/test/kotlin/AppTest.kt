@@ -1,4 +1,4 @@
-import io.ryuichi.App
+import io.ryuichi.LearnBasic
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -7,7 +7,7 @@ class AppTest {
 
     @Test
     fun `App using coroutine`() {
-        App().apply {
+        LearnBasic().apply {
             run()
             getResult() equalsTo "Hello Beautiful World !"
         }
