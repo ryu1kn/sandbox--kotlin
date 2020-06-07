@@ -17,18 +17,18 @@ class LearnBasic : App() {
                 // suspend the execution of following block
                 coroutineScope {
                     delay(waitTime * 2)
-                    print("World")
+                    println("World")
                 }
 
                 delay(waitTime)
-                print("!")
+                println("!")
             }
-            print("Hello")
+            println("Hello")
         }
     }
 
     private val praise: suspend CoroutineScope.() -> Unit = {
         delay(waitTime)
-        print("Beautiful")
+        println("Beautiful")
     }
 }
