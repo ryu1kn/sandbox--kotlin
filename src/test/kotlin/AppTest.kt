@@ -1,8 +1,5 @@
 import io.ryuichi.CaseBasicCoroutine
-import io.ryuichi.cancellation.CaseBasicCancellation
-import io.ryuichi.cancellation.CaseFinallyCancellation
-import io.ryuichi.cancellation.CaseManualCheckCancellation
-import io.ryuichi.cancellation.CaseNotCooperativeCancellation
+import io.ryuichi.cancellation.*
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -69,6 +66,21 @@ class AppTest {
                 |job: I'm sleeping 2 ...
                 |main: I'm tired of waiting!
                 |job: I'm running finally
+                |main: Now I can quit.""".trimMargin()
+        }
+    }
+
+    @Test
+    fun `Calling suspending function in cancelled coroutineScope is possible with NonCancellable context`() {
+        CaseSuspendInCancelledCoroutine().apply {
+            run()
+            getResult() equalsTo """
+                |job: I'm sleeping 0 ...
+                |job: I'm sleeping 1 ...
+                |job: I'm sleeping 2 ...
+                |main: I'm tired of waiting!
+                |job: I'm running finally
+                |job: And I've just delayed for 1 sec because I'm non-cancellable
                 |main: Now I can quit.""".trimMargin()
         }
     }
