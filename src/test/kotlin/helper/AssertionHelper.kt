@@ -13,7 +13,9 @@ interface AssertionHelper {
     infix fun String.shouldContain(expected: Regex) =
         assertTrue(this.contains(expected), """Expected "$this" to contain "${expected.pattern}"""")
 
-    infix fun Int.shouldBeLessThan(expected: Int) {
+    infix fun Int.shouldBeLessThan(expected: Int) = this.toLong() shouldBeLessThan expected.toLong()
+
+    infix fun Long.shouldBeLessThan(expected: Long) {
         if (this >= expected) fail("Expected $this to be less than $expected")
     }
 }
