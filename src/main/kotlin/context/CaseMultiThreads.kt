@@ -21,5 +21,6 @@ class CaseMultiThreads : App() {
         }
     }
 
-    override val println = { s: String -> super.println("[${Thread.currentThread().name}] $s") }
+    override val println: (String) -> Boolean
+        get() = { s: String -> super.println("[${Thread.currentThread().name}] $s") }
 }
