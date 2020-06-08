@@ -13,4 +13,12 @@ class RunnableTest : AssertionHelper {
             """.trimIndent().toRegex()
         }
     }
+
+    @Test
+    fun `Accessing mutatable variable from multiple threads cause a bug`() {
+        CaseRaceCondition().apply {
+            run()
+            result.toInt() shouldBeLessThan 100000
+        }
+    }
 }

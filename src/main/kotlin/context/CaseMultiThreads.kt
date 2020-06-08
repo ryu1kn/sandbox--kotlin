@@ -1,11 +1,13 @@
 package io.ryuichi.context
 
 import io.ryuichi.App
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class CaseMultiThreads : App() {
+    @ObsoleteCoroutinesApi
     override fun run() = runBlocking<Unit> {
         // Leveraging `use` to automatically close the resource after use
         newSingleThreadContext("Ctx1").use { ctx1 ->
