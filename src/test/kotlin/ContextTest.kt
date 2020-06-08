@@ -23,9 +23,9 @@ class ContextTest : AssertionHelper {
         CaseMultiThreads().apply {
             run()
             getResult().apply {
-                shouldContain("\\[Ctx1 @coroutine#\\d+\\] Started in ctx1".toRegex())
-                shouldContain("\\[Ctx2 @coroutine#\\d+\\] Working in ctx2".toRegex())
-                shouldContain("\\[Ctx1 @coroutine#\\d+\\] Back to ctx1".toRegex())
+                shouldContain("\\[Ctx1 @coroutine#\\d+] Started in ctx1".toRegex())
+                shouldContain("\\[Ctx2 @coroutine#\\d+] Working in ctx2".toRegex())
+                shouldContain("\\[Ctx1 @coroutine#\\d+] Back to ctx1".toRegex())
             }
         }
     }
