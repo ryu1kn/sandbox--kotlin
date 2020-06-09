@@ -4,6 +4,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Test
 import kotlin.system.measureTimeMillis
 
@@ -17,14 +18,15 @@ class MultithreadingTest : AssertionHelper {
         val threadNames = mutableListOf<String>()
 
         val time = measureTimeMillis {
-            val jobs = (1..iteration).map {
-                launch(Dispatchers.Default) {
-                    synchronized(threadNames) {
-                        threadNames.add(Thread.currentThread().name)
+            withContext(Dispatchers.Default) {
+                (1..iteration).map {
+                    launch {
+                        synchronized(threadNames) {
+                            threadNames.add(Thread.currentThread().name)
+                        }
                     }
                 }
             }
-            jobs.map { it.join() }
         }
 
         threadNames.size equalsTo iteration
@@ -38,14 +40,13 @@ class MultithreadingTest : AssertionHelper {
         val threadNames = mutableListOf<String>()
 
         val time = measureTimeMillis {
-            val jobs = (1..iteration).map {
-                launch(Dispatchers.Default) {
+            withContext(Dispatchers.Default) {
+                (1..iteration).map {
                     mutex.withLock {
                         threadNames.add(Thread.currentThread().name)
                     }
                 }
             }
-            jobs.map { it.join() }
         }
 
         threadNames.size equalsTo iteration
