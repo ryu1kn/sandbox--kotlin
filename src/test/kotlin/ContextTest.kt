@@ -36,8 +36,8 @@ class ContextTest : AssertionHelper {
             run()
             getResult().apply {
                 shouldContain("Pre-main, current thread: Thread\\[Test worker @coroutine#.*\\], thread local value: 'main'".toRegex())
-                shouldContain("Launch start, current thread: Thread\\[DefaultDispatcher-worker-1 @coroutine#.*\\], thread local value: 'launch'".toRegex())
-                shouldContain("After yield, current thread: Thread\\[DefaultDispatcher-worker-1 @coroutine#.*\\], thread local value: 'launch'".toRegex())
+                shouldContain("Launch start, current thread: Thread\\[DefaultDispatcher-worker-\\d+ @coroutine#.*\\], thread local value: 'launch'".toRegex())
+                shouldContain("After yield, current thread: Thread\\[DefaultDispatcher-worker-\\d+ @coroutine#.*\\], thread local value: 'launch'".toRegex())
                 shouldContain("Post-main, current thread: Thread\\[Test worker @coroutine#.*\\], thread local value: 'main'".toRegex())
             }
         }
