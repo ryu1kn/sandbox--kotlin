@@ -1,0 +1,47 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    id 'application'
+    id 'jacoco'
+}
+
+group 'org.example'
+version '0.0.1-SNAPSHOT'
+
+mainClassName = 'org.example.AppKt'
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.3.9'
+    implementation 'software.amazon.awssdk:dynamodb:2.13.53'
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+test {
+    useJUnitPlatform()
+    jacoco {
+        destinationFile = file("${buildDir}/jacoco/test.exec")
+    }
+}
+
+jacoco {
+    toolVersion = '0.8.5'
+}
+
+jacocoTestReport {
+    executionData(fileTree("${buildDir}/jacoco"))
+}
